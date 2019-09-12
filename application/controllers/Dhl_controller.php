@@ -50,7 +50,7 @@ class Dhl_controller extends CI_Controller
 		$shipment_response_elaborated = $this->Dhl_model->get_elaborated_response($shipment_response['response']);
 		echo "<pre>";
 		print_r($shipment_response);
-		print_r($shipment_response_elaborated);
+		//print_r($shipment_response_elaborated);
 		echo "</pre>";
 	}
 
