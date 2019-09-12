@@ -1,7 +1,14 @@
 <?php
 
 require_once(APPPATH . '/libraries/dhl-php-sdk/includes/_nonComposerLoader.php');
-use Petschko\DHL\Credentials as Credentials;
+use Petschko\DHL\BusinessShipment;
+use Petschko\DHL\Credentials;
+use Petschko\DHL\Receiver;
+use Petschko\DHL\ReturnReceiver;
+use Petschko\DHL\Sender;
+use Petschko\DHL\Service;
+use Petschko\DHL\ShipmentOrder;
+use Petschko\DHL\ShipmentDetails;
 class Dhl_model extends CI_Model
 {
 	const DDAU = "shopinna";
@@ -114,16 +121,16 @@ class Dhl_model extends CI_Model
 		$credentials = null;
 		if ($this->mode == "test") {
 			// You can initial the Credentials-Object with one of the pre-set Test-Accounts
-			$credentials = new \Petschko\DHL\Credentials(/* Optional: Test-Modus */
+			$credentials = new Credentials(/* Optional: Test-Modus */
 				Credentials::TEST_NORMAL); // Normal-Testuser
-			$credentials = new \Petschko\DHL\Credentials(/* Optional: Test-Modus */
+			$credentials = new Credentials(/* Optional: Test-Modus */
 				Credentials::TEST_THERMO_PRINTER); // Thermo-Printer-Testuser
 			// Now you just need to set your DHL-Developer-Data to it
 			$credentials->setApiUser($this->api_user); // Set the USERNAME (not E-Mail!) of your DHL-Dev-Account
 			$credentials->setApiPassword($this->api_password); // Set the Password of your DHL-Dev-Account
 		} else {
 			// Just create the Credentials-Object
-			$credentials = new \Petschko\DHL\Credentials();
+			$credentials = new Credentials();
 			// Setup these Infos: (ALL Infos are Case-Sensitive!)
 			$credentials->setUser($this->dhl_account); // DHL-Account (Same as if you Login with then to create Manual-Labels)
 			$credentials->setSignature($this->dhl_account_password); // DHL-Account-Password
@@ -175,7 +182,7 @@ class Dhl_model extends CI_Model
 	//$additional_params has optional keys
 	public function set_sender(array $params,array $additional_params = array())
 	{
-		$sender = new \Petschko\DHL\Sender();
+		$sender = new Sender();
 
 		$sender->setName((string) $params['name']); // Can be a Person-Name or Company Name
 		// You need to seperate the StreetName from the Number and set each one to its own setter
@@ -225,7 +232,7 @@ class Dhl_model extends CI_Model
 	//$additional_params has optional keys
 	public function set_receiver(array $params,array $additional_params = array())
 	{
-		$receiver = new \Petschko\DHL\Receiver();
+		$receiver = new Receiver();
 
 		$receiver->setName((string) $params['name']); // Can be a Person-Name or Company Name
 		// You need to seperate the StreetName from the Number and set each one to its own setter
@@ -277,7 +284,7 @@ class Dhl_model extends CI_Model
 		$credentials = $this->get_credentials();
 		// Create the Object with the first 10 Digits of your Account-Number (EKP).
 		// You can use the \Petschko\DHL\Credentials function "->getEkp((int) amount)" to get just the first 10 digits if longer
-		$shipmentDetails = new \Petschko\DHL\ShipmentDetails((string) $credentials->getEkp(10) . '0101'); // Ensure the 0101 at the end (or the number you need for your Product)
+		$shipmentDetails = new ShipmentDetails((string) $credentials->getEkp(10) . '0101'); // Ensure the 0101 at the end (or the number you need for your Product)
 
 		// You can set a Shipment-Date you have to provide it in this Format: YYYY-MM-DD
 		if(!empty($params) && isset($params['shipment_date'])){
@@ -288,7 +295,7 @@ class Dhl_model extends CI_Model
 
 	public function set_shipment_order($shipmentDetails,$sender,$receiver,array $optional_params = array())
 	{
-		$shipmentOrder = new \Petschko\DHL\ShipmentOrder();
+		$shipmentOrder = new ShipmentOrder();
 		// Add all the required informations from previous Objects
 		$shipmentOrder->setShipmentDetails($shipmentDetails); // \Petschko\DHL\ShipmentDetails Object
 		$shipmentOrder->setSender($sender); // \Petschko\DHL\Sender Object
@@ -300,7 +307,7 @@ class Dhl_model extends CI_Model
 	public function create_business_shipment()
 	{
 		$credentials = $this->get_credentials();
-		$dhl = new \Petschko\DHL\BusinessShipment($credentials);
+		$dhl = new BusinessShipment($credentials);
 		return $dhl;
 	}
 
