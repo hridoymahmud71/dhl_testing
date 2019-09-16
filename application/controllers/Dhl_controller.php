@@ -9,6 +9,7 @@ class Dhl_controller extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model("Dhl_model");
+		$this->load->model("Petschko_given_test_model");
 	}
 
 	public function test_credentials()
@@ -52,6 +53,11 @@ class Dhl_controller extends CI_Controller
 		print_r($shipment_response);
 		//print_r($shipment_response_elaborated);
 		echo "</pre>";
+	}
+
+	public function run_petscko_given_test()
+	{
+		$this->Petschko_given_test_model->run_test();
 	}
 
 
