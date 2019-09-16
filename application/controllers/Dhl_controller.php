@@ -55,7 +55,7 @@ class Dhl_controller extends CI_Controller
 		echo "</pre>";
 	}
 
-	public function run_petscko_given_test()
+	public function run_petscko_given_test_code()
 	{
 		$this->Petschko_given_test_model->run_test();
 	}

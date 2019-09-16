@@ -55,3 +55,4 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['test/dhl/credentials'] = 'dhl_controller/test_credentials';
 $route['test/dhl/shipment'] = 'dhl_controller/test_shipment';
+$route['test/petscko/code'] = 'dhl_controller/run_petscko_given_test_code';

@@ -42,10 +42,11 @@ use Petschko\DHL\Service;
 use Petschko\DHL\ShipmentOrder;
 use Petschko\DHL\ShipmentDetails;
 
+const DDAU = "shopinna";
+const DDAP = "kn@02@07NGWU";
+
 Class Petschko_given_test_model extends CI_Model
 {
-	const DDAU = "shopinna";
-	const DDAP = "kn@02@07NGWU";
 
 	public function run_test()
 	{
