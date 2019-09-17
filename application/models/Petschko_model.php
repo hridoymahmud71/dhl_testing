@@ -11,7 +11,7 @@ use Petschko\DHL\Service;
 use Petschko\DHL\ShipmentOrder;
 use Petschko\DHL\ShipmentDetails;
 
-class Dhl_model extends CI_Model
+class Petschko_model extends CI_Model
 {
 	const DDAU = "shopinna";
 	const DDAP = "kn@02@07NGWU";

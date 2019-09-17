@@ -8,17 +8,18 @@ class Dhl_controller extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model("Dhl_model");
+		$this->load->model("Petschko_model");
 		$this->load->model("Petschko_given_test_model");
+		$this->load->model("Alfallouji_given_test_model");
 	}
 
-	public function test_credentials()
+	public function test_petschko_credentials()
 	{
-		$this->Dhl_model->get_credentials();
-		$this->Dhl_model->print_this(false,true);
+		$this->Petschko_model->get_credentials();
+		$this->Petschko_model->print_this(false,true);
 	}
 
-	public function test_shipment()
+	public function test_petschko_shipment()
 	{
 		$sender_params = array();
 		$sender_params['name'] = "Chinaza Specialist Hospital";
@@ -41,14 +42,14 @@ class Dhl_controller extends CI_Controller
 		$shipment_details_params = array();
 		$shipment_details_params['shipment_date'] = "2019-09-18";
 
-		$shipment_details_object = $this->Dhl_model->set_shipment_details($shipment_details_params);
-		$sender_obj =  $this->Dhl_model->set_sender($sender_params);
-		$receiver_obj =  $this->Dhl_model->set_receiver($receiver_params);
+		$shipment_details_object = $this->Petschko_model->set_shipment_details($shipment_details_params);
+		$sender_obj =  $this->Petschko_model->set_sender($sender_params);
+		$receiver_obj =  $this->Petschko_model->set_receiver($receiver_params);
 
-		$shipment_order_object = $this->Dhl_model->set_shipment_order($shipment_details_object,$sender_obj,$receiver_obj);
+		$shipment_order_object = $this->Petschko_model->set_shipment_order($shipment_details_object,$sender_obj,$receiver_obj);
 
-		$shipment_response = $this->Dhl_model->create_shipment(array($shipment_order_object));
-		$shipment_response_elaborated = $this->Dhl_model->get_elaborated_response($shipment_response['response']);
+		$shipment_response = $this->Petschko_model->create_shipment(array($shipment_order_object));
+		$shipment_response_elaborated = $this->Petschko_model->get_elaborated_response($shipment_response['response']);
 		echo "<pre>";
 		print_r($shipment_response);
 		//print_r($shipment_response_elaborated);
@@ -58,6 +59,13 @@ class Dhl_controller extends CI_Controller
 	public function run_petscko_given_test_code()
 	{
 		$this->Petschko_given_test_model->run_test();
+	}
+	
+	//------------------------------------------------------------------------------------------------------------------
+
+	public function run_alfallaouji_given_shipment_request()
+	{
+		
 	}
 
 

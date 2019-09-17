@@ -53,6 +53,8 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['test/dhl/credentials'] = 'dhl_controller/test_credentials';
-$route['test/dhl/shipment'] = 'dhl_controller/test_shipment';
+$route['test/dhl/petschko/credentials'] = 'dhl_controller/test_petschko_credentials';
+$route['test/dhl/petschko/shipment'] = 'dhl_controller/test_petschko_shipment';
 $route['test/petscko/code'] = 'dhl_controller/run_petscko_given_test_code';
+
+$route['test/ag/shipment_requst'] = 'dhl_controller/run_alfallaouji_given_shipment_request';
