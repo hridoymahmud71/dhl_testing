@@ -1,6 +1,6 @@
 <?php
 
-class ShipmentRequestService extends CI_Model
+class Dreipunktnull_shipment_request_service extends CI_Model
 {
 	/**
 	 * @var string

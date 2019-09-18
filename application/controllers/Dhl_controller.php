@@ -11,6 +11,7 @@ class Dhl_controller extends CI_Controller
 		$this->load->model("Petschko_model");
 		$this->load->model("Petschko_given_test_model");
 		$this->load->model("Alfallouji_given_test_model");
+		$this->load->model("Dreipunktnull_shipment_request_service");
 	}
 
 	public function test_petschko_credentials()
@@ -66,6 +67,14 @@ class Dhl_controller extends CI_Controller
 	public function run_alfallaouji_given_shipment_request()
 	{
 		$this->Alfallouji_given_test_model->shipment_request();
+	}
+
+	public function run_reipunktnull_shipment_request()
+	{
+		$user =  'v62_RQzB9wtMF5';
+		$password = 'vf3fmnZ8TM' ;
+		$accountNumber = ' 365162861' ;
+		$this->Dreipunktnull_shipment_request_service($user,$password,$accountNumber);
 	}
 
 

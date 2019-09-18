@@ -332,10 +332,16 @@ abstract class Base extends BaseDataType
     {
         foreach ($this->_params as $name => $infos) 
         {
+        	echo " {$infos['required']} | {$name} |  {$this->_values[$name]} <br>";
+
             if (isset($infos['required']) && true === $infos['required'] && $this->_values[$name] === null)
             {
                 throw new \InvalidArgumentException('Field ' . $name . ' has no value');
             }
+
+            /*echo "<pre>";
+            print_r($this->_values);
+            echo "</pre>";*/
 
             if ($this->_values[$name]) 
             {

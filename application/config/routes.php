@@ -57,4 +57,5 @@ $route['test/dhl/petschko/credentials'] = 'dhl_controller/test_petschko_credenti
 $route['test/dhl/petschko/shipment'] = 'dhl_controller/test_petschko_shipment';
 $route['test/petscko/code'] = 'dhl_controller/run_petscko_given_test_code';
 
-$route['test/ag/shipment_requeust'] = 'dhl_controller/run_alfallaouji_given_shipment_request';
+$route['test/ag/shipment_request'] = 'dhl_controller/run_alfallaouji_given_shipment_request';
+$route['test/dp/shipment_request'] = 'dhl_controller/run_reipunktnull_shipment_request';
