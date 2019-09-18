@@ -33,7 +33,7 @@ return array(
         'pass' => 'kn@02@07NGWU',
 
         // Shipper, Billing and Duty Account numbers
-        'shipperAccountNumber' => 'YOUR_NUMBER',
+        'shipperAccountNumber' => '365162861',
         'billingAccountNumber' => 'YOUR_NUMBER',
         'dutyAccountNumber' => 'YOUR_NUMBER',
     ),
