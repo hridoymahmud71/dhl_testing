@@ -1,6 +1,6 @@
 <?php
 
-class Dreipunktnull_shipment_request_service extends CI_Model
+class Dreipunktnull_shipment_request_service
 {
 	/**
 	 * @var string
@@ -22,7 +22,7 @@ class Dreipunktnull_shipment_request_service extends CI_Model
 	 * @param string $password
 	 * @param string $accountNumber
 	 */
-	public function __construct(string $user, string $password, string $accountNumber)
+	public function __construct( $user,  $password, $accountNumber)
 	{
 		$this->user = $user;
 		$this->password = $password;
@@ -102,7 +102,8 @@ class Dreipunktnull_shipment_request_service extends CI_Model
 	 * @param string $reason This parameter is optional but may be useful.
 	 * @return DeleteResponseType
 	 */
-	public function cancel(ShipmentRequest $shipmentRequest, $requester = 'ERNIE_OR_BERT', $reason = DeleteRequestType::REASON_REASON_NOT_GIVEN): DeleteResponseType
+	//public function cancel(ShipmentRequest $shipmentRequest, $requester = 'ERNIE_OR_BERT', $reason = DeleteRequestType::REASON_REASON_NOT_GIVEN): DeleteResponseType
+	public function cancel(ShipmentRequest $shipmentRequest, $requester = 'ERNIE_OR_BERT', $reason = DeleteRequestType::REASON_REASON_NOT_GIVEN)
 	{
 		$webservice = $this->prepareWebservice();
 
@@ -121,7 +122,8 @@ class Dreipunktnull_shipment_request_service extends CI_Model
 	/**
 	 * @return GblDHLExpressTrack
 	 */
-	private function prepareWebservice(): GblDHLExpressTrack
+	private function prepareWebservice()
+	//private function prepareWebservice(): GblDHLExpressTrack
 	{
 		$track = new GblDHLExpressTrack(['trace' => 1]);
 

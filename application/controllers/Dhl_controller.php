@@ -1,7 +1,7 @@
 <?php
 
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+include_once (APPPATH.'/models/Dreipunktnull_shipment_request_service.php');
 class Dhl_controller extends CI_Controller
 {
 
@@ -11,7 +11,7 @@ class Dhl_controller extends CI_Controller
 		$this->load->model("Petschko_model");
 		$this->load->model("Petschko_given_test_model");
 		$this->load->model("Alfallouji_given_test_model");
-		$this->load->model("Dreipunktnull_shipment_request_service");
+		//$this->load->model("Dreipunktnull_shipment_request_service");
 	}
 
 	public function test_petschko_credentials()
@@ -73,8 +73,9 @@ class Dhl_controller extends CI_Controller
 	{
 		$user =  'v62_RQzB9wtMF5';
 		$password = 'vf3fmnZ8TM' ;
-		$accountNumber = ' 365162861' ;
-		$this->Dreipunktnull_shipment_request_service($user,$password,$accountNumber);
+		$accountNumber = '365162861' ;
+		 $shipping_request_service = new  Dreipunktnull_shipment_request_service($user,$password,$accountNumber);
+		$shipping_request_service
 	}
 
 
