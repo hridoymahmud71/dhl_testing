@@ -16,13 +16,14 @@ class Alfallouji_given_test_model extends CI_Model
 		parent::__construct();
 	}
 
-	private $dhl = array(
-		'id' 					=> 'Your_DHL_ID',
-		'pass' 					=> 'Your_DHL_Password',
-		'shipperAccountNumber' 	=> 'Your_Number',
-		'billingAccountNumber' 	=> 'Your_Number',
-		'dutyAccountNumber' 	=> 	'Your_Number',
-	);
+	private $dhl;
+
+	public function set_dhl()
+	{
+		$this->dhl = $GLOBALS['alfallaugi_dhl_config']['dhl'];
+
+		return $this;
+	}
 
 	public function get_dhl()
 	{
@@ -143,6 +144,10 @@ class Alfallouji_given_test_model extends CI_Model
 
 		// Call DHL XML API
 		$start = microtime(true);
+
+		//echo "<pre>";
+		//print_r($sample);
+		//echo "</pre>";
 
 		// Display the XML that will be sent to DHL
 		echo $sample->toXML();

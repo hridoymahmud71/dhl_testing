@@ -65,7 +65,7 @@ class Dhl_controller extends CI_Controller
 
 	public function run_alfallaouji_given_shipment_request()
 	{
-		
+		$this->Alfallouji_given_test_model->shipment_request();
 	}
 
 

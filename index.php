@@ -89,6 +89,20 @@ switch (ENVIRONMENT)
 		exit(1); // EXIT_ERROR
 }
 
+$error_reporting = 1; // 0 = unknown, 1 = full , 2 = none
+
+if ($error_reporting == 1) {
+	/*full error reporting*/
+	ini_set('display_errors', 1);
+	ini_set('display_startup_errors', 1);
+	error_reporting(E_ALL);
+} else if ($error_reporting == 2) {
+	/*no error reporting*/
+	ini_set('display_errors', 0);
+	ini_set('display_startup_errors', 0);
+	error_reporting(~E_ALL);
+}
+
 /*
  *---------------------------------------------------------------
  * SYSTEM DIRECTORY NAME
