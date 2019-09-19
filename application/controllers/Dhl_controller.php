@@ -2,6 +2,10 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 include_once (APPPATH.'/models/Dreipunktnull_shipment_request_service.php');
+require_once (APPPATH.'/libraries/dhl-express-master/vendor/autoload.php');
+use DHL\Express\Webservice\ContactInfoType;
+use DHL\Express\Webservice\ContactType;
+use DHL\Express\Webservice\AddressType;
 class Dhl_controller extends CI_Controller
 {
 
@@ -75,7 +79,25 @@ class Dhl_controller extends CI_Controller
 		$password = 'vf3fmnZ8TM' ;
 		$accountNumber = '365162861' ;
 		 $shipping_request_service = new  Dreipunktnull_shipment_request_service($user,$password,$accountNumber);
-		$shipping_request_service
+
+		$date = new DateTime('2019-09-25 11:00:00', new DateTimeZone('Europe/Rome'));
+
+		$sct = new ContactType("Ike  Izon-ebi","Patterson-Fletcher","07087499733");
+		$sat = new AddressType("Omo Olugbon House, Obafalabi Street, Ojodu Berger","Ikeja","","NG");
+		$sender = new ContactInfoType($sct,$sat);
+
+		$rct = new ContactType("Blessing  Izon-ebi","Olson Electronics","08034161826");
+		$rat = new AddressType("2B, Ogalade Close","Lagos Island","","NG");
+		$receiver = new ContactInfoType($rct,$rat);
+
+
+		$shipment_request = new stdClass();
+		$shipment_detail_type =  $shipping_request_service->createShipping($date,$sender,$receiver,$shipment_request);
+
+		echo "<pre>";
+		print_r($shipment_detail_type);
+		echo "<pre>";
+
 	}
 
 

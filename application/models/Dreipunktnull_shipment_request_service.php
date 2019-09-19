@@ -1,5 +1,6 @@
 <?php
-
+require_once (APPPATH.'/libraries/dhl-express-master/vendor/autoload.php');
+use DHL\Express\Webservice\ContactInfoType;
 class Dreipunktnull_shipment_request_service
 {
 	/**
@@ -125,10 +126,10 @@ class Dreipunktnull_shipment_request_service
 	private function prepareWebservice()
 	//private function prepareWebservice(): GblDHLExpressTrack
 	{
-		$track = new GblDHLExpressTrack(['trace' => 1]);
+		$track = new GblDHLExpressTrack(array('trace' => 1));
 
 		$wsse_header = WssWsuAuthHeader::soapClientWSSecurityHeader($this->user, $this->password, $this->accountNumber);
-		$track->__setSoapHeaders([$wsse_header]);
+		$track->__setSoapHeaders(array($wsse_header));
 
 		return $track;
 	}
